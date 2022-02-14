@@ -41,9 +41,11 @@ export default function OneCard(props) {
       );
   }
 
-  function handelToSingleMovie(movieid) {
-    navigate(`/movie/${movieid}`);
-    console.log("hande to a signle movie", movieid);
+  function handelToSingleMovie(movieid, rating) {
+    navigate(`/movie/${movieid}`, {
+      state: { rating: rating, replace: false },
+    });
+    console.log("hande to a signle movie", movieid, rating);
   }
 
   return (
@@ -54,11 +56,11 @@ export default function OneCard(props) {
         image={`${IMAGE_BASE}${poster_path}`}
         alt={title}
         to="/movie"
-        onClick={user.username && (() => handelToSingleMovie(id))}
+        onClick={user.username && (() => handelToSingleMovie(id, rating))}
       />
       <CardContent
         to="/movie"
-        onClick={user.username && (() => handelToSingleMovie(id))}
+        onClick={user.username && (() => handelToSingleMovie(id, rating))}
       >
         <Typography gutterBottom variant="h7" component="div">
           {title}

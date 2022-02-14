@@ -9,22 +9,33 @@ import {
   Button,
 } from "@mui/material";
 import { CardContent } from "@material-ui/core";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export default function SingleMovie(props) {
   const { axiosClient, user } = props;
   const { movieId } = useParams();
   const [singleMovieData, setSingleMovieData] = useState([]);
   const [scores, setScores] = useState();
+  const [submittedScore, setsubmittedScore] = useState();
   const ratingOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  const navigate = useNavigate();
-  console.log("single movie id", movieId, "user session id", user);
+  const rating = useLocation().state.rating;
+  console.log("passing rating", rating);
+  //   const navigate = useNavigate();
+  console.log(
+    "single movie id",
+    movieId,
+    "user session id",
+    user,
+    "signle movie data",
+    singleMovieData
+  );
 
   useEffect(() => {
     axiosClient
       .get(`/movie/${movieId}`)
       .then((res) => setSingleMovieData(res.data));
   }, []);
+
   function handelRatingChange(e) {
     setScores(e.target.value);
     console.log(e.target.value);
@@ -38,7 +49,7 @@ export default function SingleMovie(props) {
         { params: { session_id: user.sessionid } }
       )
       .then((res) => console.log("rated this movie", scores, "pointes", res))
-      .then(() => navigate("/rated"));
+      .then(setsubmittedScore(scores));
   }
 
   return (
@@ -94,9 +105,13 @@ export default function SingleMovie(props) {
             </Typography>
             <Typography variant="subtitle2" mt={1}>
               Your Rating:
+              {submittedScore ? submittedScore : rating ? rating : "No record"}
             </Typography>
-
-            <select value={scores} onChange={handelRatingChange}>
+            <select
+              id="submitScore"
+              value={scores}
+              onChange={handelRatingChange}
+            >
               {ratingOptions.map((each) => {
                 return <option value={each}>{each}</option>;
               })}
