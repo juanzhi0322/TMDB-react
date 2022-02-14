@@ -11,12 +11,15 @@ import MenuItem from "@mui/material/MenuItem";
 import logo from "../logo.svg";
 import { Link as RouterLink } from "react-router-dom";
 import { Link } from "@mui/material";
+import { Typography } from "@mui/material";
 
 const pages = ["home", "favorite", "rated"];
 
 const ResponsiveAppBar = (props) => {
+  const { user, setUser, axiosClient } = props;
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-  console.log("props.user", props.user);
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  console.log("props.user", user);
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -25,6 +28,23 @@ const ResponsiveAppBar = (props) => {
     setAnchorElNav(null);
   };
 
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+
+  function handelLogOut() {
+    console.log("log out");
+    axiosClient
+      .delete(`/authentication/session`, {
+        data: { session_id: user.sessionid },
+      })
+      .then(() => setUser({}))
+      .then(() => console.log("successfully log out"));
+  }
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
@@ -113,10 +133,41 @@ const ResponsiveAppBar = (props) => {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            {props.user.username ? (
-              <Button key="login" color="inherit">
-                {props.user.username}
-              </Button>
+            {user.username ? (
+              // <Button key="login" color="inherit">
+              //   {props.user.username}
+              // </Button>
+              <>
+                <Button
+                  key="login"
+                  color="inherit"
+                  onClick={handleOpenUserMenu}
+                >
+                  {user.username}
+                </Button>
+                <Menu
+                  sx={{ mt: "45px" }}
+                  id="menu-appbar"
+                  anchorEl={anchorElUser}
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  open={Boolean(anchorElUser)}
+                  onClose={handleCloseUserMenu}
+                >
+                  <MenuItem key="logout" onClick={handleCloseUserMenu}>
+                    <Typography onClick={handelLogOut} textAlign="center">
+                      logout
+                    </Typography>
+                  </MenuItem>
+                </Menu>
+              </>
             ) : (
               <Button
                 component={RouterLink}

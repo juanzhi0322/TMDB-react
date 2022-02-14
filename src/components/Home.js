@@ -93,7 +93,10 @@ export default function Home(props) {
       <Grid container spacing={4} justifyContent="center">
         <Grid item>
           {/* <ArrowBackIosNewIcon onClick={() => props.clickPage("back", page)} /> */}
-          <ArrowBackIosNewIcon onClick={() => handelPage("back", page)} />
+          <ArrowBackIosNewIcon
+            onClick={() => handelPage("back", page)}
+            sx={{ cursor: "pointer" }}
+          />
         </Grid>
         <Grid item>
           <Typography variant="body2" component="span" xs={{ pb: 4 }}>
@@ -104,7 +107,10 @@ export default function Home(props) {
           {/* <ArrowForwardIosIcon
             onClick={() => props.clickPage("forward", page)}
           /> */}
-          <ArrowForwardIosIcon onClick={() => handelPage("forward", page)} />
+          <ArrowForwardIosIcon
+            onClick={() => handelPage("forward", page)}
+            sx={{ cursor: "pointer" }}
+          />
         </Grid>
       </Grid>
       <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>

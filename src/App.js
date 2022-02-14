@@ -43,7 +43,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <ResponsiveAppBar user={user} />
+        <ResponsiveAppBar user={user} axiosClient={client} setUser={setUser} />
         <Routes>
           <Route
             path="/"

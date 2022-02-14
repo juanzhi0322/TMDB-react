@@ -57,9 +57,11 @@ export default function OneCard(props) {
         alt={title}
         to="/movie"
         onClick={user.username && (() => handelToSingleMovie(id, rating))}
+        sx={user.username && { cursor: "pointer" }}
       />
       <CardContent
         to="/movie"
+        sx={user.username && { cursor: "pointer" }}
         onClick={user.username && (() => handelToSingleMovie(id, rating))}
       >
         <Typography gutterBottom variant="h7" component="div">
@@ -85,6 +87,7 @@ export default function OneCard(props) {
           </Grid>
           <Grid
             item
+            sx={user.username && { cursor: "pointer" }}
             onClick={
               user.username &&
               (() => {
