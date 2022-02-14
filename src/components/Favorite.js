@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Grid } from "@mui/material";
 import OneCard from "../sharedUI/OneCard";
+import { Container } from "@mui/material";
 
 export default function Favorite(props) {
   const { user, axiosClient, favoriteList, setFavoriteList } = props;
@@ -34,8 +35,10 @@ export default function Favorite(props) {
   });
 
   return (
-    <Grid container spacing={2} sx={{ mt: 1 }}>
-      {cardComponents}
-    </Grid>
+    <Container sx={{ mt: 4, mb: 4 }}>
+      <Grid container spacing={2} sx={{ mt: 1 }}>
+        {cardComponents}
+      </Grid>
+    </Container>
   );
 }

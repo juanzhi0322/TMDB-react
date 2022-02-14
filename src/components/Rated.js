@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Grid } from "@mui/material";
 import OneCard from "../sharedUI/OneCard";
+import { Container } from "@mui/material";
 
 export default function Rated(props) {
   const {
@@ -38,8 +39,12 @@ export default function Rated(props) {
     );
   });
   return (
-    <Grid container spacing={2} sx={{ mt: 1 }}>
-      {cardComponents}
-    </Grid>
+    myRating.length !== 0 && (
+      <Container sx={{ mt: 4, mb: 4 }}>
+        <Grid container spacing={2} sx={{ mt: 1 }}>
+          {cardComponents}
+        </Grid>
+      </Container>
+    )
   );
 }

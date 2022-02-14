@@ -30,20 +30,6 @@ export default function Home(props) {
   console.log("results", movies);
   console.log("username", user);
 
-  // useEffect(() => {
-  //   axiosClient
-  //     .get(`movie/${type}`, { params: { language: "en-US", page: page } })
-  //     .then((results) => {
-  //       console.log("api", results);
-  //       // const newData = data.results.map((each) => {
-  //       //   return { ...each, favorite: false };
-  //       // });
-  //       setTotalPages(results.data.total_pages);
-  //       setPage(results.data.page);
-  //       setMovies([...results.data.results]);
-  //     });
-  // }, []);
-
   // handel the prev/next pagination and data updating
   function handelPage(direction, curpage) {
     let nextPage = curpage;
@@ -103,7 +89,7 @@ export default function Home(props) {
   });
 
   return (
-    <Container sx={{ mt: 4 }}>
+    <Container sx={{ mt: 4, mb: 4 }}>
       <Grid container spacing={4} justifyContent="center">
         <Grid item>
           {/* <ArrowBackIosNewIcon onClick={() => props.clickPage("back", page)} /> */}
@@ -122,16 +108,10 @@ export default function Home(props) {
         </Grid>
       </Grid>
       <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-        {/* <Select
-          id="demo-simple-select-standard"
-          inputProps={{ "aria-label": "Without label" }}
-          defaultValue="now_playing"
-          onChange={props.clickType}
-        > */}
         <Select
           id="demo-simple-select-standard"
           inputProps={{ "aria-label": "Without label" }}
-          defaultValue="now_playing"
+          defaultValue={type}
           onChange={handelType}
         >
           <MenuItem value="now_playing">Now Playing</MenuItem>

@@ -9,10 +9,11 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Grid } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { pink } from "@mui/material/colors";
 
 export default function OneCard(props) {
   const navigate = useNavigate();
-  const { id, title, vote_average, poster_path } = props.movie;
+  const { id, title, vote_average, poster_path, rating } = props.movie;
   const { user, isFavorite, axiosClient, setFavoriteList, favoriteList } =
     props;
   const IMAGE_BASE = "https://image.tmdb.org/t/p/w500";
@@ -40,17 +41,9 @@ export default function OneCard(props) {
       );
   }
 
-  // handel function when user click the movie image/title
-  function handelToRated(movieid, sessionid) {
-    console.log("rated clicked, movie id is", movieid);
-    axiosClient
-      .post(
-        `/movie/${movieid}/rating`,
-        { value: 7 },
-        { params: { session_id: sessionid } }
-      )
-      .then((res) => console.log("rated this movie 7 pointes", res))
-      .then(() => navigate("/movie"));
+  function handelToSingleMovie(movieid) {
+    navigate(`/movie/${movieid}`);
+    console.log("hande to a signle movie", movieid);
   }
 
   return (
@@ -61,11 +54,11 @@ export default function OneCard(props) {
         image={`${IMAGE_BASE}${poster_path}`}
         alt={title}
         to="/movie"
-        onClick={user.username && (() => handelToRated(id, user.sessionid))}
+        onClick={user.username && (() => handelToSingleMovie(id))}
       />
       <CardContent
         to="/movie"
-        onClick={user.username && (() => handelToRated(id, user.sessionid))}
+        onClick={user.username && (() => handelToSingleMovie(id))}
       >
         <Typography gutterBottom variant="h7" component="div">
           {title}
@@ -73,31 +66,21 @@ export default function OneCard(props) {
       </CardContent>
       <CardActions>
         <Grid container>
-          <Grid item xs={10}>
+          <Grid item container xs={10}>
             <Rating
               name="read-only"
               value={vote_average / 2}
               precision={0.5}
               readOnly
             />
-            <Typography variant="body2" component="span" xs={{ pb: 4 }}>
-              {vote_average}
+            <Typography
+              variant="body2"
+              component="div"
+              sx={{ alignContent: "center", m: 0.5 }}
+            >
+              {vote_average} {rating && <span> / {rating}</span>}
             </Typography>
           </Grid>
-          {/* <Grid
-            item
-            onClick={
-              user.username &&
-              (() => {
-                props.clickFavorite(
-                  user.userid,
-                  user.sessionid,
-                  id,
-                  isFavorite
-                );
-              })
-            }
-          > */}
           <Grid
             item
             onClick={
@@ -107,7 +90,11 @@ export default function OneCard(props) {
               })
             }
           >
-            {isFavorite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+            {isFavorite ? (
+              <FavoriteIcon sx={{ color: pink[500] }} />
+            ) : (
+              <FavoriteBorderIcon />
+            )}
           </Grid>
         </Grid>
       </CardActions>
