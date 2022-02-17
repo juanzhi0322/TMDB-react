@@ -40,11 +40,14 @@ export default function Rated(props) {
   });
   return (
     myRating.length !== 0 && (
-      <Container sx={{ mt: 4, mb: 4 }}>
-        <Grid container spacing={2} sx={{ mt: 1 }}>
-          {cardComponents}
-        </Grid>
-      </Container>
+      <>
+        <h1 className="title">Rated</h1>
+        <Container sx={{ mt: 4, mb: 4 }}>
+          <Grid container spacing={2} sx={{ mt: 1 }}>
+            {cardComponents}
+          </Grid>
+        </Container>
+      </>
     )
   );
 }

@@ -1,5 +1,5 @@
 import React from "react";
 
 export default function FavoriteWithoutUser() {
-  return <p>Please login to see favorite</p>;
+  return <h1 className="title">Please login to see favorite</h1>;
 }

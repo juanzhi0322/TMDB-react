@@ -35,10 +35,13 @@ export default function Favorite(props) {
   });
 
   return (
-    <Container sx={{ mt: 4, mb: 4 }}>
-      <Grid container spacing={2} sx={{ mt: 1 }}>
-        {cardComponents}
-      </Grid>
-    </Container>
+    <>
+      <h1 className="title">Favorite</h1>
+      <Container sx={{ mt: 4, mb: 4 }}>
+        <Grid container spacing={2} sx={{ mt: 1 }}>
+          {cardComponents}
+        </Grid>
+      </Container>
+    </>
   );
 }

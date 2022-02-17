@@ -1,5 +1,5 @@
 import React from "react";
 
 export default function RatedWithoutUser() {
-  return <p>Please login to see reted</p>;
+  return <h1 className="title">Please login to see rated</h1>;
 }
