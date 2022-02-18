@@ -37,6 +37,7 @@ function App() {
         setTotalPages(results.data.total_pages);
         setPage(results.data.page);
         setMovies([...results.data.results]);
+        setUser(JSON.parse(localStorage.getItem("user")));
       });
   }, []);
 
