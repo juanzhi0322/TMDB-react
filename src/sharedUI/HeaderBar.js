@@ -46,26 +46,26 @@ const ResponsiveAppBar = (props) => {
       .then(() => console.log("successfully log out"));
   }
   return (
-    <AppBar position="static">
-      <Container maxWidth="xl">
+    <AppBar position='static'>
+      <Container maxWidth='xl'>
         <Toolbar disableGutters>
           <Box sx={{ mr: 2, display: { xs: "none", md: "flex" } }}>
-            <img src={logo} alt="logo" className="logo" />
+            <img src={logo} alt='logo' className='logo' />
           </Box>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
+              size='large'
+              aria-label='account of current user'
+              aria-controls='menu-appbar'
+              aria-haspopup='true'
               onClick={handleOpenNavMenu}
-              color="inherit"
+              color='inherit'
             >
               <MenuIcon />
             </IconButton>
             <Menu
-              id="menu-appbar"
+              id='menu-appbar'
               anchorEl={anchorElNav}
               anchorOrigin={{
                 vertical: "bottom",
@@ -85,7 +85,7 @@ const ResponsiveAppBar = (props) => {
               {pages.map((page) =>
                 page === "home" ? (
                   <MenuItem key={page} id={page} onClick={handleCloseNavMenu}>
-                    <Link component={RouterLink} to="/" underline="none">
+                    <Link component={RouterLink} to='/' underline='none'>
                       {page}
                     </Link>
                   </MenuItem>
@@ -94,7 +94,7 @@ const ResponsiveAppBar = (props) => {
                     <Link
                       component={RouterLink}
                       to={`/${page}`}
-                      underline="none"
+                      underline='none'
                     >
                       {page}
                     </Link>
@@ -104,14 +104,14 @@ const ResponsiveAppBar = (props) => {
             </Menu>
           </Box>
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-            <img src={logo} alt="logo" className="logo" />
+            <img src={logo} alt='logo' className='logo' />
           </Box>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) =>
               page === "home" ? (
                 <Button
                   component={RouterLink}
-                  to="/"
+                  to='/'
                   key={page}
                   // onClick={handleCloseNavMenu}
                   sx={{ my: 2, color: "white", display: "block" }}
@@ -133,21 +133,21 @@ const ResponsiveAppBar = (props) => {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            {user.username ? (
+            {user?.username ? (
               // <Button key="login" color="inherit">
               //   {props.user.username}
               // </Button>
               <>
                 <Button
-                  key="login"
-                  color="inherit"
+                  key='login'
+                  color='inherit'
                   onClick={handleOpenUserMenu}
                 >
-                  {user.username}
+                  {user?.username}
                 </Button>
                 <Menu
                   sx={{ mt: "45px" }}
-                  id="menu-appbar"
+                  id='menu-appbar'
                   anchorEl={anchorElUser}
                   anchorOrigin={{
                     vertical: "top",
@@ -161,8 +161,8 @@ const ResponsiveAppBar = (props) => {
                   open={Boolean(anchorElUser)}
                   onClose={handleCloseUserMenu}
                 >
-                  <MenuItem key="logout" onClick={handleCloseUserMenu}>
-                    <Typography onClick={handelLogOut} textAlign="center">
+                  <MenuItem key='logout' onClick={handleCloseUserMenu}>
+                    <Typography onClick={handelLogOut} textAlign='center'>
                       logout
                     </Typography>
                   </MenuItem>
@@ -171,9 +171,9 @@ const ResponsiveAppBar = (props) => {
             ) : (
               <Button
                 component={RouterLink}
-                key="login"
-                to="/login"
-                color="inherit"
+                key='login'
+                to='/login'
+                color='inherit'
               >
                 login
               </Button>

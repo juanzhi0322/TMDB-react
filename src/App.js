@@ -1,6 +1,6 @@
 import * as React from "react";
 import "./App.css";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ResponsiveAppBar from "./sharedUI/HeaderBar";
 import Home from "./components/Home";
 import Favorite from "./components/Favorite";
@@ -39,15 +39,15 @@ function App() {
         setMovies([...results.data.results]);
         setUser(JSON.parse(localStorage.getItem("user")));
       });
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <div className="App">
+    <div className='App'>
       <BrowserRouter>
         <ResponsiveAppBar user={user} axiosClient={client} setUser={setUser} />
         <Routes>
           <Route
-            path="/"
+            path='/'
             element={
               Object.keys(movies).length !== 0 && (
                 <Home
@@ -68,9 +68,9 @@ function App() {
             }
           ></Route>
           <Route
-            path="/favorite"
+            path='/favorite'
             element={
-              user.username ? (
+              user?.username ? (
                 <Favorite
                   user={user}
                   axiosClient={client}
@@ -83,9 +83,9 @@ function App() {
             }
           ></Route>
           <Route
-            path="/rated"
+            path='/rated'
             element={
-              user.username ? (
+              user?.username ? (
                 <Rated
                   user={user}
                   axiosClient={client}
@@ -100,13 +100,13 @@ function App() {
             }
           ></Route>
           <Route
-            path="/login"
+            path='/login'
             element={
               <Login user={user} setUser={setUser} axiosClient={client} />
             }
           ></Route>
           <Route
-            path="/movie/:movieId"
+            path='/movie/:movieId'
             element={<SingleMovie axiosClient={client} user={user} />}
           ></Route>
         </Routes>

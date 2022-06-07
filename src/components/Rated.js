@@ -19,13 +19,14 @@ export default function Rated(props) {
       })
       .then((res) => setMyRating(res.data.results))
       .then(() => console.log("set my rating", myRating));
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   const cardComponents = myRating.map((each) => {
     const foundFavorite = Boolean(
       favoriteList.find((eachFav) => eachFav.id === each.id)
     );
     return (
-      <Grid item container key={each.id} xs={3} alignItems="stretch">
+      <Grid item container key={each.id} xs={3} alignItems='stretch'>
         <OneCard
           user={user}
           movie={each}
@@ -41,7 +42,7 @@ export default function Rated(props) {
   return (
     myRating.length !== 0 && (
       <>
-        <h1 className="title">Rated</h1>
+        <h1 className='title'>Rated</h1>
         <Container sx={{ mt: 4, mb: 4 }}>
           <Grid container spacing={2} sx={{ mt: 1 }}>
             {cardComponents}

@@ -51,20 +51,20 @@ export default function OneCard(props) {
   return (
     <Card>
       <CardMedia
-        component="img"
-        height="400"
+        component='img'
+        height='400'
         image={`${IMAGE_BASE}${poster_path}`}
         alt={title}
-        to="/movie"
-        onClick={user.username && (() => handelToSingleMovie(id, rating))}
-        sx={user.username && { cursor: "pointer" }}
+        to='/movie'
+        onClick={user?.username && (() => handelToSingleMovie(id, rating))}
+        sx={user?.username && { cursor: "pointer" }}
       />
       <CardContent
-        to="/movie"
-        sx={user.username && { cursor: "pointer" }}
-        onClick={user.username && (() => handelToSingleMovie(id, rating))}
+        to='/movie'
+        sx={user?.username && { cursor: "pointer" }}
+        onClick={user?.username && (() => handelToSingleMovie(id, rating))}
       >
-        <Typography gutterBottom variant="h7" component="div">
+        <Typography gutterBottom variant='h7' component='div'>
           {title}
         </Typography>
       </CardContent>
@@ -72,14 +72,14 @@ export default function OneCard(props) {
         <Grid container>
           <Grid item container xs={10}>
             <Rating
-              name="read-only"
+              name='read-only'
               value={vote_average / 2}
               precision={0.5}
               readOnly
             />
             <Typography
-              variant="body2"
-              component="div"
+              variant='body2'
+              component='div'
               sx={{ alignContent: "center", m: 0.5 }}
             >
               {vote_average} {rating && <span> / {rating}</span>}
@@ -87,9 +87,9 @@ export default function OneCard(props) {
           </Grid>
           <Grid
             item
-            sx={user.username && { cursor: "pointer" }}
+            sx={user?.username && { cursor: "pointer" }}
             onClick={
-              user.username &&
+              user?.username &&
               (() => {
                 handelFavorite(user.userid, user.sessionid, id, isFavorite);
               })

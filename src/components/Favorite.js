@@ -13,14 +13,14 @@ export default function Favorite(props) {
       })
       .then((res) => setFavoriteList(res.data.results))
       .then(() => console.log("get favorites list current", favoriteList));
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const cardComponents = favoriteList.map((each) => {
     const foundFavorite = Boolean(
       favoriteList.find((eachFav) => eachFav.id === each.id)
     );
     return (
-      <Grid item container key={each.id} xs={3} alignItems="stretch">
+      <Grid item container key={each.id} xs={3} alignItems='stretch'>
         <OneCard
           user={user}
           movie={each}
@@ -36,7 +36,7 @@ export default function Favorite(props) {
 
   return (
     <>
-      <h1 className="title">Favorite</h1>
+      <h1 className='title'>Favorite</h1>
       <Container sx={{ mt: 4, mb: 4 }}>
         <Grid container spacing={2} sx={{ mt: 1 }}>
           {cardComponents}
